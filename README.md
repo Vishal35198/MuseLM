@@ -1,2 +1,4 @@
-# TransMuse
-A Transformer Based model for music generation 
+# MuseLM
+A project focused on [brief description of MuseLM].
+
+![MuseLM Logo](logo.png)
