@@ -1,3 +1,9 @@
+# data 
+data/
+parsed_data/
+notes.txt
+durations.txt
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

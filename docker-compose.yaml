@@ -1,0 +1,7 @@
+version: '3.8'
+services:
+  app:
+    image: alpine  # or any lightweight image with `curl`
+    volumes:
+      - ./data:/app/data  # Maps local ./data to container's /app/data
+    tty: true
