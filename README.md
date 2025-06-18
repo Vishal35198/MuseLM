@@ -1,4 +1,9 @@
-# MuseLM
-A project focused on [brief description of MuseLM].
+<div align="center">
+  
+  # 🎼 MuseLM 🎵  
+  An LSTM-based Music Generation Model 🎹 trained on the **Bach Cello Suite Dataset** 🎻🎶.  
+  Generate Music that sounds classical...🎼🤖  
 
-![MuseLM Logo](logo.png)
+  <img src="logo.png" alt="MuseLM Logo">
+
+</div>
