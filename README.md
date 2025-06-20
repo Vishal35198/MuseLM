@@ -2,8 +2,10 @@
   
   # 🎼 MuseLM 🎵  
   An LSTM-based Music Generation Model 🎹 trained on the **Bach Cello Suite Dataset** 🎻🎶.  
-  Generate Music that sounds classical...🎼🤖  
-  <img src="logo.png" alt="MuseLM Logo">
+  Generate Music that sounds classical...🎼🤖
+  <br> </br>
+  <img src="logo.png" alt="MuseLM Logo" width="300">
+
 
 <!--  
 [![downloads](https://img.shields.io/pypi/dm/supervision)](https://pypistats.org/packages/supervision)
