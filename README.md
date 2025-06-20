@@ -37,7 +37,7 @@ This Project is my personal exploration to build a LSTM model to generate a simp
 
 Here's an example of the scoring output:
 
-![Score Visualization](score-1.png)
+<img src="score-1.png" alt="MuseLM Logo" width="300">
 
 
 ## 🔧 Features
