@@ -11,7 +11,7 @@ from model import MuseLSTM
 from data_pipeline import (
     get_long_data,
 )
-from datasets.transformer_utils import (
+from datasets.data_utils import (
     load_parsed_files,
     get_clean_vocab
 )

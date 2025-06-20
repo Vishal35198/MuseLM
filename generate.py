@@ -113,7 +113,7 @@ notes,durations = load_parsed_files("parsed_clean_data")
 notes_vocab,_ = get_clean_vocab(notes)
 durations_vocab,_ = get_clean_vocab(durations)
 data = get_data(notes=notes,durations=durations,notes_vocab=notes_vocab,duration_vocab=durations_vocab)
-
+print(len(notes_vocab),len(durations_vocab))
 data = np.array(data)
 # (9290, 2, 51) (points,(notes,durations),sequ_len)
 # X,y_notes,y_durations = create_sequence(data,SEQ_LEN)

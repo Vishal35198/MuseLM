@@ -1,6 +1,6 @@
 from collections import Counter
 # import torch
-from transformer_utils import load_parsed_files
+from datasets.data_utils import load_parsed_files
 
 
 def vocab_builders(elements):

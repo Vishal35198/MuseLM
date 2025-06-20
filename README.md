@@ -13,6 +13,12 @@
 To build a music generation system that learns sequences of notes and durations from symbolic classical datasets (e.g., Bach Cello Suites) and produces expressive, playable MIDI outputs.
 
 ---
+## 🎯 Example Score
+
+Here's an example of the scoring output:
+
+![Score Visualization](score-1.png)
+
 
 ## 🔧 Features
 
@@ -84,6 +90,6 @@ Feel free to reach out if you're passionate about AI + Music:
 ````
 
 ---
-
+<!-- ksldjf -->
 
 </div>
