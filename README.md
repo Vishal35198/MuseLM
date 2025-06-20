@@ -3,14 +3,19 @@
   # 🎼 MuseLM 🎵  
   An LSTM-based Music Generation Model 🎹 trained on the **Bach Cello Suite Dataset** 🎻🎶.  
   Generate Music that sounds classical...🎼🤖  
-
   <img src="logo.png" alt="MuseLM Logo">
 
 
+</div>
 
 ## 🎯 Project Goal
 
 To build a music generation system that learns sequences of notes and durations from symbolic classical datasets (e.g., Bach Cello Suites) and produces expressive, playable MIDI outputs.
+
+---
+## 🎼 Note
+
+This Project is my personal exploration to build a LSTM model to generate a simple melodies of classical era. I am a pianist and have keen intereset in generative models.
 
 ---
 
@@ -42,14 +47,6 @@ To build a music generation system that learns sequences of notes and durations 
 
 ---
 
-## 🚀 How to Train
-
-```bash
-python train.py
-````
-
-Adjust batch size, sequence length, learning rate, and model architecture in `config.py`.
-
 ---
 
 ## 🎼 Generate MIDI
@@ -78,12 +75,8 @@ Apache License
 ## 📫 Contact
 
 Feel free to reach out if you're passionate about AI + Music:
-**Email**: [vishal@example.com](mailto:vishal@example.com)
-**LinkedIn**: \[YourProfileHere]
-
-````
-
----
+**Email**: [vishaljssaten@gmail.com](mailto:vishaljssaten@gmail.com)
+**LinkedIn**: [Linkedin Profile](https://www.linkedin.com/in/vishal35198/)
 
 
-</div>
+
