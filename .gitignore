@@ -1,7 +1,6 @@
 # data 
 data/
 parsed_data/
-parsed_clean_data/
 notes.txt
 durations.txt
 temp.py
