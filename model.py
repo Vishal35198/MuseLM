@@ -14,11 +14,11 @@ class MuseLSTM(nn.Module):
         
         # Outputs Heads
         self.note_out = nn.Linear(hidden_dim,note_vocab_size)
-        self.durations_out = nn.Linear(hidden_dim,note_vocab_size)
+        self.durations_out = nn.Linear(hidden_dim,durations_vocab_size)
         
     def forward(self,x):
-        note_embed = self.note_embed(x[:,0,:])
-        durations_embed = self.durations_embed(x[:,1,:])
+        note_embed = self.note_embed(x[:,:,0])
+        durations_embed = self.durations_embed(x[:,:,1])
         combined = torch.cat([note_embed,durations_embed],dim=-1)
         
         lstm_out,_ = self.lstm(combined)

@@ -1,8 +1,11 @@
 # data 
 data/
 parsed_data/
+parsed_clean_data/
 notes.txt
 durations.txt
+temp.py
+experiment.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

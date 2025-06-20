@@ -1,6 +1,6 @@
 import music21
 import glob
-from datasets.transformer_utils import (
+from datasets.data_utils import (
     parse_midi_files,
     load_parsed_files
     )
