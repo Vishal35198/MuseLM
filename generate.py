@@ -3,7 +3,7 @@ import numpy as np
 import music21 as m21
 from model import MuseLSTM
 from fractions import Fraction
-
+import random
 from datasets.data_utils import (
     load_parsed_files,
     get_clean_vocab,
@@ -12,12 +12,18 @@ from data_pipeline import (
     get_data,
     # create_sequence
 )
-
+import argparse
 #! HYPERPARAMETERS
 SEQ_LEN = 50
 BATCH_SIZE = 64
 
-def sample_from_logits(logits, temperature=1.0):
+# tempo parser arguments 
+parser = argparse.ArgumentParser()
+parser.add_argument("--tempo",help="Adjust the tempo of the midi file",type=int,default=120)
+parser.add_argument("--temperature",help="Adjust the temperature",type=float,default=0.8)
+args = parser.parse_args()
+
+def sample_from_logits(logits, temperature):
     probs = torch.softmax(logits / temperature, dim=-1)[0].cpu().numpy()
     probs = probs / probs.sum()
     return np.random.choice(len(probs), p=probs)
@@ -58,13 +64,12 @@ class MusicGenerator:
                 # print(f"Number of generation step taken {i}")
                 note_logits ,duration_logits = self.model(curr_sequence)
                 
-            note_idx = sample_from_logits(note_logits)
-            print(self.note_reverse_vocab[note_idx])
+            note_idx = sample_from_logits(note_logits,temperature)
             # print(f"notes logits {note_logits.shape} note vocab size is {len(self.note_vocab)}")
             # print(note_idx,len(self.note_vocab))
             # print(f"Duration logits {duration_logits.shape} durations vocab sze is {len(self.duration_vocab)}")
-            duration_idx = sample_from_logits(duration_logits)
-            print(self.duration_reverse_vocab[duration_idx])
+            duration_idx = sample_from_logits(duration_logits,temperature)
+            print(self.note_reverse_vocab[note_idx],self.duration_reverse_vocab[duration_idx])
             # print(duration_idx,len(durations_vocab))
             new_column = np.array([[note_idx], [duration_idx]])  # shape (2, 1)
             starting_sequnce = np.concatenate((starting_sequnce, new_column), axis=1)
@@ -72,18 +77,34 @@ class MusicGenerator:
         return starting_sequnce
     def _parse_duration(self, dur_str):
         """Convert duration string to music21 Duration object"""
-        try:
-            if '/' in dur_str:
-                return m21.duration.Duration(float(Fraction(dur_str)))
+        # try:
+        #     if '/' in dur_str:
+        #         return m21.duration.Duration(float(Fraction(dur_str)))
 
-            return m21.duration.Duration(float(dur_str))
+        #     return m21.duration.Duration(float(dur_str))
+        # except (ValueError, TypeError):
+        #     # Fallback to quarter note
+        #     return m21.duration.Duration(1.0)
+        try:
+            if "/" in dur_str:
+                duration_value = float(Fraction(dur_str))
+            duration_value = float(dur_str)
+            allowed_duration = [0.25,0.5,1]
+            # cutting of the long durations
+            if duration_value not in allowed_duration:
+                return m21.duration.Duration(0.25)
+            return m21.duration.Duration(0.25)
         except (ValueError, TypeError):
             # Fallback to quarter note
-            return m21.duration.Duration(1.0)
+            return m21.duration.Duration(0.25)
+        
         
     def sequence_to_midi(self,sequence,output_path="output.mid",tempo = 120):
         stream = m21.stream.Stream()
         stream.append(m21.tempo.MetronomeMark(number=tempo))
+        stream.insert(0.0,m21.meter.TimeSignature('4/4'))
+        stream.insert(0.0,m21.clef.TrebleClef())
+        # stream.insert(0.0, m21.key.KeySignature(0))  # C major
         sequence = sequence.T
         
         decode_sequence = [
@@ -131,8 +152,8 @@ generator = MusicGenerator(
 generator.generate_and_save(
     starting_sequence = sample,
     num_steps=50,
-    temperature=1.0,
-    tempo=140,
+    temperature=args.temperature,
+    tempo=args.tempo,
 )
                 
       
